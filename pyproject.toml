@@ -1,0 +1,10 @@
+[project]
+name = "airflow"
+version = "0.0.1"
+description = "airflow"
+readme = "README.md"
+authors = []
+requires-python = ">=3.11"
+dependencies = [
+    "apache-airflow==3",
+]
