@@ -1,4 +1,4 @@
-dag_id: my_first_dag
+dag_id: xyz_ingestion
 start_date: '2024-07-01'
 end_date: '2024-07-01'
 tags:
@@ -10,10 +10,14 @@ tasks:
   task_1:
     operator: airflow.providers.standard.operators.bash.BashOperator
     arguments:
-      bash_command: 'echo This is the first task'
+      bash_command: 'echo ingestion data from abc bucket to xyz bigquery table'
   task_2:
-    operator: airflow.providers.standard.operators.empty.EmptyOperator
+    operator: dag_factory.python.custom_python_operator
+    arguments:
+      python_callable: dag_factory.data_ingestion.gcs_to_bigquery
     dependencies: [task_1]
   task_3:
-    operator: airflow.providers.standard.operators.empty.EmptyOperator
+    operator: airflow.providers.standard.operators.bash.BashOperator
+    arguments:
+      bash_command: 'echo "Ingestion Completed!"'
     dependencies: [task_1, task_2]

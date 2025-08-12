@@ -1,5 +1,11 @@
 # Airflow
-.local/
+.local/*
+!.local/airflow.cfg
+
+# VSCode
+.vscode/
+.history/
+.code-workspace
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
